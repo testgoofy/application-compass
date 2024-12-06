@@ -13,7 +13,8 @@ type Story = StoryObj<typeof TextInput>;
 export const Primary: Story = {
     args: {
         title: "Name",
-        placeholder: "John Doe"
+        placeholder: "John Doe",
+        suffix: undefined
     },
     argTypes: {
         id: { control: false, table: { disable: true } },
