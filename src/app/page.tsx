@@ -1,3 +1,4 @@
+import Link from "next/link";
 import PositionListItem from "./_components/positionListItem";
 import { PrismaClient } from "@prisma/client";
 
@@ -9,13 +10,13 @@ export default async function Home() {
 
   return (
     <div>
-      <div className="flex justify-between items-center">
-        <p>
-          Applications
+      <div className="flex justify-between items-start">
+        <p className="text-3xl font-bold">
+          Positions
         </p>
-        <a href="#" className="p-2 m-2 bg-blue-500 text-white rounded">
+        <Link href="/add" className="p-2 m-2 bg-blue-500 text-white rounded">
           Add
-        </a>
+        </Link>
       </div>
       <ul className="divide-y divide-gray-100">
         {positions.map((position) => (
