@@ -15,3 +15,9 @@ Second, run the storybook:
 ```bash
 npm run storybook
 ```
+
+Third, start Prisma Studio to view the database:
+
+```bash
+npx prisma studio
+```
