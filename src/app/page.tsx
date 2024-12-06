@@ -1,6 +1,12 @@
 import PositionListItem from "./_components/positionListItem";
+import { PrismaClient } from "@prisma/client";
 
-export default function Home() {
+const client = new PrismaClient();
+
+export default async function Home() {
+
+  const positions = await client.position.findMany();
+
   return (
     <div>
       <div className="flex justify-between items-center">
@@ -12,8 +18,9 @@ export default function Home() {
         </a>
       </div>
       <ul className="divide-y divide-gray-100">
-        <PositionListItem title="Data Scientist" company="Endress" salary={84500} />
-        <PositionListItem />
+        {positions.map((position) => (
+          <PositionListItem title={position.title} company={position.company} salary={position.salary} />
+        ))}
       </ul>
     </div>
   );
