@@ -1,6 +1,7 @@
 import Link from "next/link";
 import PositionListItem from "./_components/positionListItem";
 import { PrismaClient } from "@prisma/client";
+import ButtonLink from "./_components/buttonLink";
 
 const client = new PrismaClient();
 
@@ -14,9 +15,7 @@ export default async function Home() {
         <p className="text-3xl font-bold">
           Positions
         </p>
-        <Link href="/add" className="p-2 m-2 bg-blue-500 text-white rounded">
-          Add
-        </Link>
+        <ButtonLink text="Add Position" endpoint="/add" />
       </div>
       <ul className="divide-y divide-gray-100">
         {positions.map((position) => (
