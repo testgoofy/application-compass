@@ -1,4 +1,6 @@
-export default function PositionListItem({ title, company, salary }: { title?: string, company?: string, salary?: number }) {
+import Link from "next/link"
+
+export default function PositionListItem({ id, title, company, salary }: { id: string, title?: string, company?: string, salary?: number }) {
 
     let loading = false
     let titleNode
@@ -29,16 +31,18 @@ export default function PositionListItem({ title, company, salary }: { title?: s
     }
 
     return (
-        <li className={(loading ? 'animate-pulse ' : '') + "flex justify-between gap-x-6 py-5"} >
-            <div className="flex min-w-0 gap-x-4">
-                <div className="min-w-0 flex-auto">
-                    {titleNode}
-                    {companyNode}
+        <Link href={`/details/${id}`}>
+            <li className={(loading ? 'animate-pulse ' : '') + "flex justify-between gap-x-6 py-5"} >
+                <div className="flex min-w-0 gap-x-4">
+                    <div className="min-w-0 flex-auto">
+                        {titleNode}
+                        {companyNode}
+                    </div>
                 </div>
-            </div>
-            <div className="flex items-center">
-                {salaryNode}
-            </div>
-        </li >
+                <div className="flex items-center">
+                    {salaryNode}
+                </div>
+            </li >
+        </Link>
     )
 }
