@@ -19,7 +19,7 @@ export default async function Home() {
       </div>
       <ul className="divide-y divide-gray-100">
         {positions.map((position) => (
-          <PositionListItem title={position.title} company={position.company} salary={position.salary} />
+          <PositionListItem key={position.id} title={position.title} company={position.company} salary={position.salary} />
         ))}
       </ul>
     </div>
