@@ -4,6 +4,8 @@ import ButtonLink from "./_components/buttonLink";
 
 const client = new PrismaClient();
 
+export const dynamic = 'force-dynamic'
+
 export default async function Home() {
 
   const positions = await client.position.findMany({
