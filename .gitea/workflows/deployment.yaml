@@ -4,6 +4,6 @@ on:
 
 jobs:
   build:
-    runs-on: automatically
+    runs-on: ubuntu-latest
     steps:
       - run: echo "Hello World from Pipeline"
