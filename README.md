@@ -21,3 +21,13 @@ Third, start Prisma Studio to view the database:
 ```bash
 npx prisma studio
 ```
+
+## Deployment
+
+A database change can be made by running the following command:
+
+```bash
+npx prisma db push
+```
+
+After such a change, the development server must be restarted.
