@@ -24,7 +24,7 @@ export default async function DetailPosition({params} : {params: Promise<{bk: st
                         <p className="ml-2 mt-1 text-xl text-gray-500">at {position?.company}</p>
                     </div>
                 </div>
-                <div className="flex flex-col items-center">
+                <div className="flex flex-col items-end">
                     <div className="flex">
                         <button className="p-2 m-2 bg-blue-500 text-white rounded" >
                             <Image src="/edit.svg" alt="edit" width={12} height={12}/>
@@ -33,7 +33,7 @@ export default async function DetailPosition({params} : {params: Promise<{bk: st
                             <Image src="/trash.svg" alt="edit" width={12} height={12}/>
                         </button>
                     </div>
-                    <p className="text-xl text-gray-900">{position?.salary.toLocaleString('gsw', { style: 'currency', currency: 'CHF' })}</p>
+                    <p className="text-xl text-gray-900">{position?.salary.toLocaleString('gsw', { style: 'currency', currency: 'CHF' }) + " per year"}</p>
                 </div>
             </div>
             <div className="flex gap-x-4 items-center">
