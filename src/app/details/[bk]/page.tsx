@@ -1,19 +1,35 @@
 import { PrismaClient } from "@prisma/client";
 import Image from "next/image";
 import Dropdown from "../../_components/dropdown";
+import { redirect } from "next/navigation";
 
 const client = new PrismaClient();
 
 export default async function DetailPosition({params} : {params: Promise<{bk: string}>}) {
-
     const { bk } = await params
-
+    
     const position = await client.position.findFirst({
         where: {
             bk: bk,
-            valid_from: undefined
+            valid_to: undefined
         }
     })
+
+    async function deleteHandler() {
+        'use server'
+
+        await client.position.update({
+            where: {
+                id: position?.id
+            },
+            data: {
+                valid_to: new Date(),
+                deleted_at: new Date()
+            }
+        })
+
+        redirect('/')
+    }
 
     return (
         <div className="flex flex-col gap-y-4">
@@ -29,7 +45,7 @@ export default async function DetailPosition({params} : {params: Promise<{bk: st
                         <button className="p-2 m-2 bg-blue-500 text-white rounded" >
                             <Image src="/edit.svg" alt="edit" width={12} height={12}/>
                         </button>
-                        <button className="p-2 m-2 bg-red-500 text-white rounded" >
+                        <button className="p-2 m-2 bg-red-500 text-white rounded" onClick={deleteHandler} >
                             <Image src="/trash.svg" alt="edit" width={12} height={12}/>
                         </button>
                     </div>

@@ -19,6 +19,9 @@ model Position {
   status     String
   valid_from DateTime  @default(now())
   valid_to   DateTime?
+  deleted_at DateTime?
 
+  @@unique([bk, valid_from])
+  @@unique([bk, valid_to])
   @@map("positions")
 }

@@ -7,7 +7,12 @@ const client = new PrismaClient();
 
 export default async function Home() {
 
-  const positions = await client.position.findMany();
+  const positions = await client.position.findMany({
+    where: {
+      valid_to: null,
+      deleted_at: null
+    }
+  });
 
   return (
     <div>
@@ -19,7 +24,7 @@ export default async function Home() {
       </div>
       <ul className="divide-y divide-gray-1">
         {positions.map((position) => (
-          <PositionListItem key={position.id} id={position.bk} title={position.title} company={position.company} salary={position.salary} />
+          <PositionListItem key={position.bk} id={position.bk} title={position.title} company={position.company} salary={position.salary} />
         ))}
       </ul>
     </div>
