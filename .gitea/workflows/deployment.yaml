@@ -26,5 +26,7 @@ jobs:
       - name: Build & Push docker image
         uses: docker/build-push-action@v6
         with:
+          context: .
           push: true
-          tags: application-compass:latest
+          tags: git.testgoofy.ch/lukas/application-compass:latest
+          platforms: linux/amd64
