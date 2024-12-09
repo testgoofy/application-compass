@@ -11,15 +11,16 @@ generator client {
 }
 
 model Position {
-  id         Int       @id @default(autoincrement())
-  bk         String    @default(uuid())
-  title      String
-  salary     Int?
-  company    String
-  status     String
-  valid_from DateTime  @default(now())
-  valid_to   DateTime?
-  deleted_at DateTime?
+  id           Int       @id @default(autoincrement())
+  bk           String    @default(uuid())
+  title        String
+  requirements String?
+  salary       Int?
+  company      String
+  status       String
+  valid_from   DateTime  @default(now())
+  valid_to     DateTime?
+  deleted_at   DateTime?
 
   @@unique([bk, valid_from])
   @@unique([bk, valid_to])

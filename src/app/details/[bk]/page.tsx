@@ -56,6 +56,10 @@ export default async function DetailPosition({params} : {params: Promise<{bk: st
                     <p className="text-xl text-gray-900">{position?.salary != null ? position?.salary.toLocaleString('gsw', { style: 'currency', currency: 'CHF' }) + " per year" : ""}</p>
                 </div>
             </div>
+            <div className="flex flex-col gap-x-4 items-start">
+                <p className="text-base text-gray-900">Requirements</p>
+                <p className="text-base">{position?.requirements}</p>
+            </div>
             <div className="flex gap-x-4 items-center">
                 <p className="text-base text-gray-900">Status</p>
                 <p className="text-base">{position?.status}</p>
