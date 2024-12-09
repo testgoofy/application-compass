@@ -1,4 +1,3 @@
-import Link from "next/link";
 import PositionListItem from "./_components/positionListItem";
 import { PrismaClient } from "@prisma/client";
 import ButtonLink from "./_components/buttonLink";

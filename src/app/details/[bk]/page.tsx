@@ -1,6 +1,5 @@
 import { PrismaClient } from "@prisma/client";
 import Image from "next/image";
-import Dropdown from "../../_components/dropdown";
 import { redirect } from "next/navigation";
 
 const client = new PrismaClient();
