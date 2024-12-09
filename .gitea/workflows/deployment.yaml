@@ -4,6 +4,7 @@ on:
 
 jobs:
   build:
-    runs-on: alpine:3.21.0
+    runs-on: ubuntu-latest
+    container: alpine:3.21.0
     steps:
       - run: echo "Hello World from Pipeline"
