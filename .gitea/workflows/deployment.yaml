@@ -23,6 +23,8 @@ jobs:
           registry: git.testgoofy.ch
           username: ${{ vars.USER }}
           password: ${{ secrets.TOKEN }}
+      - name: Set up Docker
+        uses: docker/setup-docker-action@v4
       - name: Build & Push docker image
         uses: docker/build-push-action@v6
         with:
