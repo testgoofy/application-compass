@@ -24,7 +24,7 @@ export default async function Home() {
         <ButtonLink text="Add Position" endpoint="/add" />
       </div>
       <ul className="divide-y divide-gray-1">
-        {positions.map((position) => (
+        {positions.map((position: any) => (
           <PositionListItem key={position.bk} id={position.bk} title={position.title} company={position.company} salary={position.salary} />
         ))}
       </ul>
