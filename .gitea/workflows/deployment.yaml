@@ -1,0 +1,9 @@
+name: Deployment
+on:
+  - push
+
+jobs:
+  build:
+    runs-on: automatically
+    steps:
+      - run: echo "Hello World from Pipeline"
