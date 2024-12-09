@@ -11,10 +11,13 @@ generator client {
 }
 
 model Position {
-  id      String @id @default(uuid())
-  title   String
-  salary  Int
-  company String
+  id         Int       @id @default(autoincrement())
+  bk         String    @default(uuid())
+  title      String
+  salary     Int
+  company    String
+  valid_from DateTime  @default(now())
+  valid_to   DateTime?
 
   @@map("positions")
 }

@@ -3,13 +3,14 @@ import Image from "next/image";
 
 const client = new PrismaClient();
 
-export default async function DetailPosition({params} : {params: Promise<{id: string}>}) {
+export default async function DetailPosition({params} : {params: Promise<{bk: string}>}) {
 
-    const { id } = await params
+    const { bk } = await params
 
-    const position = await client.position.findUnique({
+    const position = await client.position.findFirst({
         where: {
-            id: id
+            bk: bk,
+            valid_from: undefined
         }
     })
 
