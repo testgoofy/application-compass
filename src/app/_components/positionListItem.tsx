@@ -32,8 +32,8 @@ export default function PositionListItem({ id, title, company, salary }: { id: s
     }
 
     return (
-        <Link href={`/details/${id}`}>
-            <li className={(loading ? 'animate-pulse ' : '') + "flex justify-between gap-x-6 px-4 py-5 hover:bg-gray-50"} >
+        <li className={(loading ? 'animate-pulse ' : '') + "px-4 py-5 hover:bg-gray-50"} >
+            <Link href={`/details/${id}`} className="flex justify-between gap-x-6 ">
                 <div className="flex min-w-0 gap-x-4">
                     <div className="min-w-0 flex-auto">
                         {titleNode}
@@ -44,7 +44,7 @@ export default function PositionListItem({ id, title, company, salary }: { id: s
                     {salaryNode}
                     <Image src={"/chevron-right.svg"} alt="More info" width={20} height={20} className="ml-2" />
                 </div>
-            </li >
-        </Link>
+            </Link>
+        </li >
     )
 }
