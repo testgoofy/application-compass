@@ -1,3 +1,4 @@
+import Image from "next/image"
 import Link from "next/link"
 
 export default function PositionListItem({ id, title, company, salary }: { id: string, title?: string, company?: string, salary?: number }) {
@@ -41,6 +42,7 @@ export default function PositionListItem({ id, title, company, salary }: { id: s
                 </div>
                 <div className="flex items-center">
                     {salaryNode}
+                    <Image src={"/chevron-right.svg"} alt="More info" width={20} height={20} className="ml-2" />
                 </div>
             </li >
         </Link>
