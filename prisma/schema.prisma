@@ -14,7 +14,7 @@ model Position {
   id         Int       @id @default(autoincrement())
   bk         String    @default(uuid())
   title      String
-  salary     Int
+  salary     Int?
   company    String
   status     String
   valid_from DateTime  @default(now())

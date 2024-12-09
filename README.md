@@ -2,7 +2,14 @@
 
 ## Getting Started
 
-First, run the development server:
+First, start a postgres database for development:
+
+```bash
+docker run --name dev-postgres -p 5432:5432 -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=password -e POSTGRES_DB=application-compass -d postgres
+npx prisma db push
+```
+
+Then, run the development server:
 
 ```bash
 npm run dev
@@ -10,13 +17,13 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-Second, run the storybook:
+Further, run the storybook:
 
 ```bash
 npm run storybook
 ```
 
-Third, start Prisma Studio to view the database:
+Finally, start Prisma Studio to view the database:
 
 ```bash
 npx prisma studio

@@ -15,7 +15,7 @@ export default async function AddPosition() {
             data: {
                 title: formData.get('title') as string,
                 company: formData.get('company') as string,
-                salary: parseInt(formData.get('salary') as string),
+                salary: parseInt(formData.get('salary') as string) != 0 ? parseInt(formData.get('salary') as string) : null,
                 status: formData.get('status') as string
             }
         })

@@ -3,11 +3,9 @@ import Link from "next/link"
 
 export default function PositionListItem({ id, title, company, salary }: { id: string, title?: string, company?: string, salary?: number }) {
 
-    let loading = false
     let titleNode
     if (title === undefined) {
         titleNode = <div className="h-6 w-28 bg-slate-200 rounded"></div>
-        loading = true
     }
     else {
         titleNode = <p className="text-base font-semibold text-gray-900">{title}</p>
@@ -16,23 +14,21 @@ export default function PositionListItem({ id, title, company, salary }: { id: s
     let companyNode
     if (company === undefined) {
         companyNode = <div className="h-5 w-24 ml-2 mt-1 bg-slate-200 rounded"></div>
-        loading = true
     }
     else {
         companyNode = <p className="ml-2 mt-1 text-sm text-gray-500">{company}</p>
     }
 
     let salaryNode
-    if (salary === undefined) {
-        salaryNode = <div className="h-6 w-28 bg-slate-200 rounded"></div>
-        loading = true
+    if (salary === null) {
+        salaryNode = <div className="h-6"></div>
     }
     else {
-        salaryNode = <p className="text-base text-gray-900">{salary.toLocaleString('gsw', { style: 'currency', currency: 'CHF' })}</p>
+        salaryNode = <p className="text-base text-gray-900">{salary?.toLocaleString('gsw', { style: 'currency', currency: 'CHF' })}</p>
     }
 
     return (
-        <li className={(loading ? 'animate-pulse ' : '') + "px-4 py-5 hover:bg-gray-50"} >
+        <li className={"px-4 py-5 hover:bg-gray-50"} >
             <Link href={`/details/${id}`} className="flex justify-between gap-x-6 ">
                 <div className="flex min-w-0 gap-x-4">
                     <div className="min-w-0 flex-auto">
