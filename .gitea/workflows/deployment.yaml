@@ -3,8 +3,9 @@ on:
   - push
 
 jobs:
-  build:
+  lint:
     runs-on: ubuntu-latest
-    container: alpine:3.21.0
+    container: node:23.3.0
     steps:
-      - run: echo "Hello World from Pipeline"
+      - run: npm install
+      - run: npm run lint
