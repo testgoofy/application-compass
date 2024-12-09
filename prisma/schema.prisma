@@ -16,6 +16,7 @@ model Position {
   title      String
   salary     Int
   company    String
+  status     String
   valid_from DateTime  @default(now())
   valid_to   DateTime?
 

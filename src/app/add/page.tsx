@@ -1,5 +1,6 @@
 import Form from 'next/form'
 import { PrismaClient } from "@prisma/client";
+import Dropdown from "../_components/dropdown";
 import TextInput from "../_components/textInput";
 import NumberInput from "../_components/numberInput";
 import { redirect } from 'next/navigation';
@@ -15,6 +16,7 @@ export default async function AddPosition() {
                 title: formData.get('title') as string,
                 company: formData.get('company') as string,
                 salary: parseInt(formData.get('salary') as string),
+                status: formData.get('status') as string
             }
         })
 
@@ -30,6 +32,7 @@ export default async function AddPosition() {
                 <TextInput id="title" title="Title of the Position" placeholder="Data Scientist" />
                 <TextInput id="company" title="Company" placeholder="Google Inc." />
                 <NumberInput id="salary" title="Yearly Salary" placeholder="100000" suffix="CHF" />
+                <Dropdown id="status" title="Status" options={['Initial', 'Applied', 'Interview Round 1', 'Interview Round 2', 'Offer', 'Rejected']} />
                 <input type="submit" value="Submit" className="p-2 m-2 bg-blue-500 text-white rounded" />
             </Form>
         </div>
