@@ -15,6 +15,7 @@ model Position {
   bk           String    @default(uuid())
   title        String
   requirements String?
+  description  String?
   salary       Int?
   company      String
   status       String

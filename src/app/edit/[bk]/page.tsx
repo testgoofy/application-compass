@@ -39,7 +39,8 @@ export default async function EditPosition({params} : {params: Promise<{bk: stri
                 company: formData.get('company') as string,
                 salary: parseInt(formData.get('salary') as string),
                 status: formData.get('status') as string,
-                requirements: formData.get('requirements') as string
+                requirements: formData.get('requirements') as string,
+                description: formData.get('description') as string
             }
         })
 
@@ -57,6 +58,7 @@ export default async function EditPosition({params} : {params: Promise<{bk: stri
                 <NumberInput id="salary" title="Yearly Salary" value={position?.salary == null ? undefined : position?.salary} placeholder="100000" suffix="CHF" />
                 <Dropdown id="status" title="Status" value={position?.status} options={['Initial', 'Applied', 'Interview Round 1', 'Interview Round 2', 'Offer', 'Rejected']}/>
                 <TextArea id='requirements' title='Job Requirements' value={position?.requirements == null ? undefined : position?.requirements}/>
+                <TextArea id='description' title='Job Description' value={position?.description == null ? undefined : position?.description}/>
                 <input type="submit" value="Submit" className="p-2 m-2 bg-blue-500 text-white rounded" />
             </Form>
         </div>
