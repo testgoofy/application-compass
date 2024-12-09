@@ -11,7 +11,7 @@ export default async function DetailPosition({params} : {params: Promise<{bk: st
     const position = await client.position.findFirst({
         where: {
             bk: bk,
-            valid_to: undefined
+            valid_to: null
         }
     })
 
@@ -31,6 +31,11 @@ export default async function DetailPosition({params} : {params: Promise<{bk: st
         redirect('/')
     }
 
+    async function editHandler() {
+        'use server'
+        redirect('/edit/' + position?.bk)
+    }
+
     return (
         <div className="flex flex-col gap-y-4">
             <div className="flex justify-between items-center">
@@ -42,7 +47,7 @@ export default async function DetailPosition({params} : {params: Promise<{bk: st
                 </div>
                 <div className="flex flex-col items-end">
                     <div className="flex">
-                        <button className="p-2 m-2 bg-blue-500 text-white rounded" >
+                        <button className="p-2 m-2 bg-blue-500 text-white rounded" onClick={editHandler}>
                             <Image src="/edit.svg" alt="edit" width={12} height={12}/>
                         </button>
                         <button className="p-2 m-2 bg-red-500 text-white rounded" onClick={deleteHandler} >
