@@ -52,7 +52,7 @@ export default async function EditPosition({params} : {params: Promise<{bk: stri
             <Form action={handler}>
                 <TextInput id="title" title="Title of the Position" value={position?.title} placeholder="Data Scientist" />
                 <TextInput id="company" title="Company" value={position?.company} placeholder="Google Inc." />
-                <NumberInput id="salary" title="Yearly Salary" value={position?.salary} placeholder="100000" suffix="CHF" />
+                <NumberInput id="salary" title="Yearly Salary" value={position?.salary == null ? undefined : position?.salary} placeholder="100000" suffix="CHF" />
                 <Dropdown id="status" title="Status" value={position?.status} options={['Initial', 'Applied', 'Interview Round 1', 'Interview Round 2', 'Offer', 'Rejected']}/>
                 <input type="submit" value="Submit" className="p-2 m-2 bg-blue-500 text-white rounded" />
             </Form>
