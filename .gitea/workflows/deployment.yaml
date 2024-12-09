@@ -7,5 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     container: node:23.3.0
     steps:
-      - run: npm ci
-      - run: npm run lint
+      - run: pwd
+      - run: ls -lA
+      # - run: npm clean-install
+      # - run: npm run lint
