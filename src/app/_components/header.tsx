@@ -2,17 +2,13 @@ import Link from "next/link";
 
 export default function Header() {
     return (
-        <nav className="bg-gray-800">
-            <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-                <div className="flex h-16 flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-                    <div className="flex flex-shrink-0 items-center">
-                        <Link href="/">
-                            <h1 className="text-2xl font-bold text-white">
-                                Application Compass
-                            </h1>
-                        </Link>
-                    </div>
-                </div>
+        <nav className="bg-blue-500">
+            <div className="mx-auto max-w-7xl py-2 sm:px-6 px-2 lg:px-8">
+                <Link href="/">
+                    <p className="text-2xl text-white">
+                        Application Compass
+                    </p>
+                </Link>
             </div>
         </nav>   
     )
