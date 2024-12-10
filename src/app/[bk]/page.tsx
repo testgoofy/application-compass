@@ -32,7 +32,7 @@ export default async function DetailPosition({params} : {params: Promise<{bk: st
 
     async function editHandler() {
         'use server'
-        redirect('/edit/' + position?.bk)
+        redirect('/' + position?.bk + '/edit')
     }
 
     return (

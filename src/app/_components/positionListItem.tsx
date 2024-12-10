@@ -5,7 +5,7 @@ export default function PositionListItem({ id, title, company, salary }: { id: s
 
     return (
         <li className='p-3 hover:bg-gray-50' >
-            <Link href={`/details/${id}`} className='flex justify-between items-stretch'>
+            <Link href={`/${id}`} className='flex justify-between items-stretch'>
                 <div className='flex flex-col items-start w-1/3 lg:w-1/4'>
                     <p className='text-base font-semibold'>{title}</p>
                     <p className='text-xs text-gray-600'>at {company}</p>

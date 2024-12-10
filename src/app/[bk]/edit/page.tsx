@@ -44,7 +44,7 @@ export default async function EditPosition({params} : {params: Promise<{bk: stri
             }
         })
 
-        redirect('/details/' + bk)
+        redirect('/' + bk)
     }
 
     return (
