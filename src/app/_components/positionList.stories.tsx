@@ -1,11 +1,13 @@
 import '../globals.css';
 import type { Meta, StoryObj } from '@storybook/react';
 import PositionList from './positionList';
-import type { Position } from '@prisma/client'
+import PositionListItem from './positionListItem';
+
 
 const meta: Meta<typeof PositionList> = {
     title: 'Position List',
     component: PositionList,
+    subcomponents: { PositionListItem },
 };
 
 export default meta;
