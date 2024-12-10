@@ -23,7 +23,7 @@ export default async function Home() {
         <h1 className="text-2xl font-bold">
           Positions
         </h1>
-        <Link href="/add" className="flex justify-between items-center bg-blue-500 text-white p-1 rounded-md">
+        <Link href="/add" className="flex justify-between items-center bg-blue-500 text-white p-1 pr-2 rounded-md">
           <Image src="/plus.svg" alt="Add" width={24} height={24} />
           <p className="text-base">New Position</p>
         </Link>
