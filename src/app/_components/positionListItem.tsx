@@ -1,44 +1,22 @@
 import Image from "next/image"
 import Link from "next/link"
 
-export default function PositionListItem({ id, title, company, salary }: { id: string, title?: string, company?: string, salary?: number }) {
-
-    let titleNode
-    if (title === undefined) {
-        titleNode = <div className="h-6 w-28 bg-slate-200 rounded"></div>
-    }
-    else {
-        titleNode = <p className="text-base font-semibold text-gray-900">{title}</p>
-    }
-
-    let companyNode
-    if (company === undefined) {
-        companyNode = <div className="h-5 w-24 ml-2 mt-1 bg-slate-200 rounded"></div>
-    }
-    else {
-        companyNode = <p className="ml-2 mt-1 text-sm text-gray-500">{company}</p>
-    }
-
-    let salaryNode
-    if (salary === null) {
-        salaryNode = <div className="h-6"></div>
-    }
-    else {
-        salaryNode = <p className="text-base text-gray-900">{salary?.toLocaleString('gsw', { style: 'currency', currency: 'CHF' })}</p>
-    }
+export default function PositionListItem({ id, title, company, salary }: { id: string, title: string, company: string, salary?: number }) {
 
     return (
-        <li className={"px-4 py-5 hover:bg-gray-50"} >
-            <Link href={`/details/${id}`} className="flex justify-between gap-x-6 ">
-                <div className="flex min-w-0 gap-x-4">
-                    <div className="min-w-0 flex-auto">
-                        {titleNode}
-                        {companyNode}
-                    </div>
+        <li className='p-3 hover:bg-gray-50' >
+            <Link href={`/details/${id}`} className='flex justify-between items-stretch'>
+                <div className='flex flex-col items-start'>
+                    <p className='text-xl font-semibold'>{title}</p>
+                    <p className='text-base text-gray-600'>at {company}</p>
                 </div>
-                <div className="flex items-center">
-                    {salaryNode}
-                    <Image src={"/chevron-right.svg"} alt="More info" width={20} height={20} className="ml-2" />
+                <div className='hidden sm:block flex flex-col justify-start items-start min-w-28'>
+                    <p className='text-xs text-gray-600'>80 - 100%</p>
+                    <p className='text-xs text-gray-600'>Progress: 1/3</p>
+                    {salary && (<p className='text-xs text-gray-600'>{salary.toLocaleString('gsw')} CHF/year</p>)}
+                </div>
+                <div className='flex justify-center'>
+                    <Image src={"/chevron-right.svg"} alt="More >" width={32} height={32} />
                 </div>
             </Link>
         </li >
