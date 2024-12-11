@@ -57,7 +57,7 @@ export default async function DetailPosition({params} : {params: Promise<{bk: st
                     </div>
                     <div className="flex sm:flex-col items-center sm:w-1/4">
                         <p className="text-base font-semibold w-1/2 sm:w-fit">Salary</p>
-                        <p className="text-base">{position?.salary?.toLocaleString('gsw')} CHF/year</p>
+                        {position?.salary && (<p className="text-base">{position?.salary.toLocaleString('gsw')} CHF/year</p>)}
                     </div>
                 </div>
             </div>
