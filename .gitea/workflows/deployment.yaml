@@ -22,5 +22,5 @@ jobs:
           username: ${{ vars.USER }}
           password: ${{ secrets.TOKEN }}
       - name: Build docker image
-        run: docker build -t git.testgoofy.ch/lukas/application-compass:latest .
+        run: sudo docker build -t git.testgoofy.ch/lukas/application-compass:latest .
         
