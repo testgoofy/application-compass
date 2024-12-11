@@ -24,7 +24,7 @@ export default async function Home() {
           Positions
         </h1>
         <Link href="/add" className="flex justify-between items-center bg-blue-500 text-white p-1 pr-2 rounded-md">
-          <Image src="/plus.svg" alt="Add" width={24} height={24} />
+          <Image src="/plus.svg" alt="Add" width={18} height={18} />
           <p className="text-base">New Position</p>
         </Link>
       </div>
