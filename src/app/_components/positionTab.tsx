@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from 'react';
+import TailwindMarkdown from './markdown';
 
 export default function PositionTab({notes, description, requirements} : {notes?: string, description?: string, requirements?: string}) {
     const [tab, setTab] = useState('notes')
@@ -25,9 +26,9 @@ export default function PositionTab({notes, description, requirements} : {notes?
                 </li>
             </ul>
             <div className="pt-2 px-2 h-64 overflow-y-auto">
-                <p className={(tab == 'notes' ? 'block' : 'hidden')}>{notes}</p>
-                <p className={(tab == 'description' ? 'block' : 'hidden')}>{description}</p>
-                <p className={(tab == 'requirements' ? 'block' : 'hidden')}>{requirements}</p>
+                {tab == 'notes' && notes && (<TailwindMarkdown children={notes} />)}
+                {tab == 'description' && description && (<TailwindMarkdown children={description} />)}
+                {tab == 'requirements' && requirements && (<TailwindMarkdown children={requirements} />)}
             </div>
         </div>
     )
