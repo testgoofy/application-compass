@@ -2,6 +2,7 @@ import { PrismaClient } from "@prisma/client";
 import Image from "next/image";
 import Link from "next/link";
 import PositionTab from "../_components/positionTab";
+import { redirect } from "next/navigation";
 
 const client = new PrismaClient();
 
@@ -15,6 +16,29 @@ export default async function DetailPosition({params} : {params: Promise<{bk: st
         }
     })
 
+    async function deleteHandler() {
+        'use server'
+
+        await client.position.update({
+            where: {
+                id: position?.id
+            },
+            data: {
+                valid_to: new Date(),
+                deleted_at: new Date()
+            }
+        })
+
+        redirect('/')
+
+    }
+
+    async function editHandler() {
+        'use server'
+        redirect('/' + position?.bk + '/edit')
+    }
+
+
     return (
         <div className="flex flex-col gap-4">
             <div className="flex justify-between">
@@ -24,11 +48,11 @@ export default async function DetailPosition({params} : {params: Promise<{bk: st
                     <p className="text-base">Back to positions</p>
                 </Link>
                 <div className="flex gap-2">
-                    <button type="button" className="flex justify-between items-center gap-1 bg-blue-500 text-white p-1 pr-2 rounded-md">
+                    <button type="button" onClick={editHandler} className="flex justify-between items-center gap-1 bg-blue-500 text-white p-1 pr-2 rounded-md">
                         <Image src="/edit-2.svg" alt="Edit" width={18} height={18} />
                         <p className="text-base">Edit</p>
                     </button>
-                    <button type="button" className="flex justify-center border-2 border-red-500 items-center w-8 rounded-md">
+                    <button type="button" onClick={deleteHandler} className="flex justify-center border-2 border-red-500 items-center w-8 rounded-md">
                         <Image src="/trash-2.svg" alt="Delete" width={18} height={18} />
                     </button>
                 </div>
