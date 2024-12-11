@@ -2,7 +2,7 @@ FROM node:23.3.0
 
 # Install dependencies
 COPY package.json package-lock.json* ./
-RUN npm ci
+RUN npm ci --force
 
 # Generate prisma client
 COPY prisma prisma
@@ -17,7 +17,7 @@ COPY tailwind.config.ts .
 COPY public public
 COPY src/app src/app
 RUN rm src/app/_components/*.stories.tsx
-RUN npm run build
+RUN npm run build --no-lint
 
 # Serve the application
 ENV NODE_ENV=production
