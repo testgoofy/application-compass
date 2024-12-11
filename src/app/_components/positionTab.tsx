@@ -26,9 +26,9 @@ export default function PositionTab({notes, description, requirements} : {notes?
                 </li>
             </ul>
             <div className="pt-2 px-2 h-64 overflow-y-auto">
-                {tab == 'notes' && notes && (<TailwindMarkdown children={notes} />)}
-                {tab == 'description' && description && (<TailwindMarkdown children={description} />)}
-                {tab == 'requirements' && requirements && (<TailwindMarkdown children={requirements} />)}
+                {tab == 'notes' && notes && (<TailwindMarkdown>{notes}</TailwindMarkdown>)}
+                {tab == 'description' && description && (<TailwindMarkdown>{description}</TailwindMarkdown>)}
+                {tab == 'requirements' && requirements && (<TailwindMarkdown>{requirements}</TailwindMarkdown>)}
             </div>
         </div>
     )
