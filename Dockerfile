@@ -16,6 +16,7 @@ COPY postcss.config.mjs .
 COPY tailwind.config.ts .
 COPY public public
 COPY src/app src/app
+RUN rm src/app/_components/*.stories.tsx
 RUN npm run build
 
 # Serve the application
