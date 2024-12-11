@@ -7,10 +7,14 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
-      - name: Distro
-        run: cat /etc/*-release
       - name: Set up Docker
-        uses: docker/setup-docker-action@v4
+        run: |
+          curl https://download.docker.com/linux/ubuntu/dists/jammy/pool/stable/amd64/containerd.io_1.7.24-1_amd64.deb > containerd.deb
+          curl https://download.docker.com/linux/ubuntu/dists/jammy/pool/stable/amd64/docker-ce_27.4.0-1~ubuntu.22.04~jammy_amd64.deb > docker-ce.deb
+          curl https://download.docker.com/linux/ubuntu/dists/jammy/pool/stable/amd64/docker-ce-cli_27.4.0-1~ubuntu.22.04~jammy_amd64.deb > docker-ce-cli.deb
+          curl https://download.docker.com/linux/ubuntu/dists/jammy/pool/stable/amd64/docker-buildx-plugin_0.19.2-1~ubuntu.22.04~jammy_amd64.deb > docker-buildx-plugin.deb
+          curl https://download.docker.com/linux/ubuntu/dists/jammy/pool/stable/amd64/docker-compose-plugin_2.29.7-1~ubuntu.22.04~jammy_amd64.deb > docker-compose-plugin.deb
+          dpkg -i ./containerd.deb ./docker-ce.deb ./docker-ce-cli.deb ./docker-buildx-plugin.deb ./docker-compose-plugin.deb
       - name: Login to Docker Registry
         uses: docker/login-action@v3
         with:
