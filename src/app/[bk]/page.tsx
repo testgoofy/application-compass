@@ -1,7 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import Image from "next/image";
 import Link from "next/link";
-import { redirect } from "next/navigation";
+import PositionTab from "../_components/positionTab";
 
 const client = new PrismaClient();
 
@@ -14,7 +14,6 @@ export default async function DetailPosition({params} : {params: Promise<{bk: st
             valid_to: null
         }
     })
-
 
     return (
         <div className="flex flex-col gap-4">
@@ -62,6 +61,12 @@ export default async function DetailPosition({params} : {params: Promise<{bk: st
                     </div>
                 </div>
             </div>
+
+            <PositionTab 
+                notes=""
+                description={position?.description != null ? position.description : undefined}
+                requirements={position?.requirements != null ? position.requirements : undefined}
+            />
         </div>
     )
 }
