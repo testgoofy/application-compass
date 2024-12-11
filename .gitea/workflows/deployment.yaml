@@ -6,14 +6,11 @@ jobs:
     runs-on: ubuntu-latest
     container: docker
     steps:
-      - name: Checkout Repository
-        run: |
-          mkdir -p /workspace
-          cd /workspace
-          gitea-helper clone-repo $REPO_URL
       - name: Login to Docker Registry
         uses: docker/login-action@v3
         with:
           registry: git.testgoofy.ch
           username: ${{ vars.USER }}
           password: ${{ secrets.TOKEN }}
+      - name: Hello from Docker
+        run: docker ps
