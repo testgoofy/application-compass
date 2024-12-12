@@ -6,9 +6,9 @@ import { redirect } from "next/navigation";
 
 const client = new PrismaClient();
 
-export default async function DetailPosition({params} : {params: Promise<{bk: string}>}) {
+export default async function DetailPosition({ params }: { params: Promise<{ bk: string }> }) {
     const { bk } = await params
-    
+
     const position = await client.position.findFirst({
         where: {
             bk: bk,
@@ -61,7 +61,7 @@ export default async function DetailPosition({params} : {params: Promise<{bk: st
             <div className="flex flex-col border border-gray-300 divide-y divide-gray-300 rounded-lg py-1 px-2">
                 {/* Position Summary */}
                 <div className="flex content-end">
-                    <h1 className="text-2xl font-bold w-1/2 sm:w-1/3 md:w-1/4">{position?.title}</h1>
+                    <h1 className="text-2xl font-bold w-1/2">{position?.title}</h1>
                     <div className="flex flex-col justify-end">
                         <p className="text-base text-gray-600">at {position?.company}</p>
                     </div>
@@ -86,7 +86,7 @@ export default async function DetailPosition({params} : {params: Promise<{bk: st
                 </div>
             </div>
 
-            <PositionTab 
+            <PositionTab
                 notes=""
                 description={position?.description != null ? position.description : undefined}
                 requirements={position?.requirements != null ? position.requirements : undefined}
