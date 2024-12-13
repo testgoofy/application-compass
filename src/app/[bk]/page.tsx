@@ -74,7 +74,8 @@ export default async function DetailPosition({ params }: { params: Promise<{ bk:
                     </div>
                     <div className="flex sm:flex-col items-center sm:w-1/4">
                         <p className="text-base font-semibold w-1/2 sm:w-fit">Begin</p>
-                        <p className="text-base text-gray-400">unknown</p>
+                        {position?.begin && (<p className="text-base">{position.begin}</p>)}
+                        {!position?.begin && (<p className="text-base text-gray-400">unknown</p>)}
                     </div>
                     <div className="flex sm:flex-col items-center sm:w-1/4">
                         <p className="text-base font-semibold w-1/2 sm:w-fit">Duration</p>
