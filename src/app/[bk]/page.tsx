@@ -61,7 +61,7 @@ export default async function DetailPosition({ params }: { params: Promise<{ bk:
             <div className="flex flex-col border border-gray-300 divide-y divide-gray-300 rounded-lg py-1 px-2">
                 {/* Position Summary */}
                 <div className="flex content-end">
-                    <h1 className="text-2xl font-bold w-1/2">{position?.title}</h1>
+                    <h1 className="text-2xl font-bold w-1/2 truncate">{position?.title}</h1>
                     <div className="flex flex-col justify-end">
                         <p className="text-base text-gray-600">at {position?.company}</p>
                     </div>
