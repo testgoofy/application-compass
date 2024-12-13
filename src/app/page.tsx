@@ -1,8 +1,7 @@
 import PositionList from "./_components/positionList";
 import { PrismaClient } from "@prisma/client";
-import ButtonLink from "./_components/buttonLink";
-import Link from "next/link";
 import Image from "next/image";
+import { redirect } from "next/navigation";
 
 const client = new PrismaClient();
 
@@ -17,16 +16,30 @@ export default async function Home() {
     }
   });
 
+  async function handler() {
+    'use server'
+
+    const position = await client.position.create({
+      data: {
+          title: "New Position",
+          company: "",
+          status: "initial"
+      }
+    })
+
+    redirect('/' + position.bk + '/edit')
+  }
+
   return (
     <div className="flex flex-col gap-4">
       <div className="flex justify-between">
         <h1 className="text-2xl font-bold">
           Positions
         </h1>
-        <Link href="/add" className="flex justify-between items-center bg-blue-500 text-white p-1 pr-2 rounded-md">
+        <button type="button" onClick={handler} className="flex justify-between items-center bg-blue-500 text-white p-1 pr-2 rounded-md">
           <Image src="/plus.svg" alt="Add" width={18} height={18} />
           <p className="text-base">New Position</p>
-        </Link>
+        </button>
       </div>
       <PositionList positions={positions} />
     </div>
