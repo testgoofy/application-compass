@@ -11,7 +11,7 @@ export default function PositionListItem({ id, title, company, salary }: { id: s
                     <p className='text-xs text-gray-600'>at {company}</p>
                 </div>
                 <div className='grow hidden sm:block flex flex-col justify-start items-start'>
-                    <p className='text-sm text-gray-600'>Progress: 1/3</p>
+                    {/* <p className='text-sm text-gray-600'>Progress: 1/3</p> */}
                     {salary && (<p className='text-sm text-gray-600'>{salary.toLocaleString('gsw')} CHF/year</p>)}
                 </div>
                 <div className='flex justify-center'>
