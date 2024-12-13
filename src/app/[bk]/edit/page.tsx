@@ -1,17 +1,17 @@
-import Form from 'next/form'
 import { PrismaClient } from "@prisma/client";
-import Dropdown from "../../_components/dropdown";
-import TextInput from "../../_components/textInput";
-import NumberInput from "../../_components/numberInput";
-import TextArea from "../../_components/textArea";
-import { redirect } from 'next/navigation';
+import Image from "next/image";
+import Link from "next/link";
+import TextInput from "@/app/_components/textInput";
+import NumberInput from "@/app/_components/numberInput";
+import Form from "next/form";
+import PositionTab from "@/app/_components/positionTab";
+import { redirect } from "next/navigation";
 
 const client = new PrismaClient();
 
-export default async function EditPosition({params} : {params: Promise<{bk: string}>}) {
-
+export default async function EditPosition({ params }: { params: Promise<{ bk: string }> }) {
     const { bk } = await params
-    
+
     const position = await client.position.findFirst({
         where: {
             bk: bk,
@@ -28,7 +28,6 @@ export default async function EditPosition({params} : {params: Promise<{bk: stri
             },
             data: {
                 valid_to: new Date(),
-                deleted_at: new Date()
             }
         })
 
@@ -38,9 +37,9 @@ export default async function EditPosition({params} : {params: Promise<{bk: stri
                 title: formData.get('title') as string,
                 company: formData.get('company') as string,
                 salary: parseInt(formData.get('salary') as string),
-                status: formData.get('status') as string,
+                status: "",
+                description: formData.get('description') as string,
                 requirements: formData.get('requirements') as string,
-                description: formData.get('description') as string
             }
         })
 
@@ -48,19 +47,68 @@ export default async function EditPosition({params} : {params: Promise<{bk: stri
     }
 
     return (
-        <div>
-            <p className="text-3xl font-bold">
-            Edit Position
-            </p>
-            <Form action={handler}>
-                <TextInput id="title" title="Title of the Position" value={position?.title} placeholder="Data Scientist" />
-                <TextInput id="company" title="Company" value={position?.company} placeholder="Google Inc." />
-                <NumberInput id="salary" title="Yearly Salary" value={position?.salary == null ? undefined : position?.salary} placeholder="100000" suffix="CHF" />
-                <Dropdown id="status" title="Status" value={position?.status} options={['Initial', 'Applied', 'Interview Round 1', 'Interview Round 2', 'Offer', 'Rejected']}/>
-                <TextArea id='requirements' title='Job Requirements' value={position?.requirements == null ? undefined : position?.requirements}/>
-                <TextArea id='description' title='Job Description' value={position?.description == null ? undefined : position?.description}/>
-                <input type="submit" value="Submit" className="p-2 m-2 bg-blue-500 text-white rounded" />
-            </Form>
-        </div>
+        <Form action={handler}>
+            <div className="flex flex-col gap-4">
+                <div className="flex justify-between">
+                    {/* Top Navigation (Back, Edit, Delete) */}
+                    <Link href={"/" + bk} className="flex justify-between items-center gap-1">
+                        <Image src={"/arrow-left.svg"} alt="Return" width={18} height={18} />
+                        <p className="text-base">Abort to position</p>
+                    </Link>
+                    <div className="flex gap-2">
+                        <button type="submit" className="flex justify-between items-center gap-1 bg-green-500 text-white p-1 pr-2 rounded-md">
+                            <Image src="/check.svg" alt="Save" width={18} height={18} />
+                            <p className="text-base">Save</p>
+                        </button>
+                    </div>
+                </div>
+
+                <div className="flex flex-col border border-gray-300 divide-y divide-gray-300 rounded-lg px-2">
+                    {/* Position Summary */}
+                    <div className="flex content-end py-1">
+                        <div className="flex items-center w-1/2">
+                            <p className="text-base font-semibold">Job Title</p><p className="text-red-500 font-semibold pl-1">*</p>
+                        </div>
+                        <TextInput id="title" title="" value={position?.title} className="w-1/2" placeholder="Data Scientist" />
+                    </div>
+                    <div className="flex content-end py-1">
+                        <div className="flex items-center w-1/2">
+                            <p className="text-base">Company</p><p className="text-red-500 pl-1">*</p>
+                        </div>
+                        <TextInput id="company" title="" value={position?.company} className="w-1/2" placeholder="Google Inc." />
+                    </div>
+                    <div className="flex content-end py-1">
+                        <div className="flex items-center w-1/2">
+                            <p className="text-base">Degree of Employment</p>
+                        </div>
+                        <TextInput id="degree" title="" className="w-1/2" placeholder="80 - 100%"/>
+                    </div>
+                    <div className="flex content-end py-1">
+                        <div className="flex items-center w-1/2">
+                            <p className="text-base">Begin of Employment</p>
+                        </div>
+                        <TextInput id="begin" title="" className="w-1/2" placeholder="March 2025"/>
+                    </div>
+                    <div className="flex content-end py-1">
+                        <div className="flex items-center w-1/2">
+                            <p className="text-base">Duration of Employment</p>
+                        </div>
+                        <TextInput id="duration" title="" className="w-1/2" placeholder="unlimited"/>
+                    </div>
+                    <div className="flex content-end py-1">
+                        <div className="flex items-center w-1/2">
+                            <p className="text-base">Salary per Year</p>
+                        </div>
+                        <NumberInput id="salary" title="" value={position?.salary == null ? undefined : position?.salary} className="w-1/2" placeholder="100000" suffix="CHF" />
+                    </div>
+                </div>
+                <PositionTab
+                    edit
+                    notes=""
+                    description={position?.description != null ? position.description : undefined}
+                    requirements={position?.requirements != null ? position.requirements : undefined}
+                />
+                </div>
+        </Form>
     )
 }
