@@ -38,6 +38,7 @@ export default async function EditPosition({ params }: { params: Promise<{ bk: s
                 company: formData.get('company') as string,
                 salary: parseInt(formData.get('salary') as string),
                 status: "",
+                notes: formData.get('notes') as string,
                 description: formData.get('description') as string,
                 requirements: formData.get('requirements') as string,
             }
@@ -104,7 +105,7 @@ export default async function EditPosition({ params }: { params: Promise<{ bk: s
                 </div>
                 <PositionTab
                     edit
-                    notes=""
+                    notes={position?.notes != null ? position.notes : undefined}
                     description={position?.description != null ? position.description : undefined}
                     requirements={position?.requirements != null ? position.requirements : undefined}
                 />

@@ -88,7 +88,7 @@ export default async function DetailPosition({ params }: { params: Promise<{ bk:
             </div>
 
             <PositionTab
-                notes=""
+                notes={position?.notes != null ? position.notes : undefined}
                 description={position?.description != null ? position.description : undefined}
                 requirements={position?.requirements != null ? position.requirements : undefined}
             />
