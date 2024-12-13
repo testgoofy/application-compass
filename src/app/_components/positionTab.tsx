@@ -2,8 +2,9 @@
 
 import { useState } from 'react';
 import TailwindMarkdown from './markdown';
+import TextField from './textArea';
 
-export default function PositionTab({notes, description, requirements} : {notes?: string, description?: string, requirements?: string}) {
+export default function PositionTab({notes, description, requirements, edit = false} : {notes?: string, description?: string, requirements?: string, edit?: boolean}) {
     const [tab, setTab] = useState('notes')
 
     return (
@@ -26,9 +27,12 @@ export default function PositionTab({notes, description, requirements} : {notes?
                 </li>
             </ul>
             <div className="pt-2 px-2 h-64 overflow-y-auto">
-                {tab == 'notes' && notes && (<TailwindMarkdown>{notes}</TailwindMarkdown>)}
-                {tab == 'description' && description && (<TailwindMarkdown>{description}</TailwindMarkdown>)}
-                {tab == 'requirements' && requirements && (<TailwindMarkdown>{requirements}</TailwindMarkdown>)}
+                {!edit && tab == 'notes' && notes && (<TailwindMarkdown>{notes}</TailwindMarkdown>)}
+                {!edit && tab == 'description' && description && (<TailwindMarkdown>{description}</TailwindMarkdown>)}
+                {!edit && tab == 'requirements' && requirements && (<TailwindMarkdown>{requirements}</TailwindMarkdown>)}
+                {edit && (<TextField id='notes' title='' value={notes} className={tab == 'notes' ? 'block' : 'hidden'} />)}
+                {edit && (<TextField id='description' title='' value={description} className={tab == 'description' ? 'block' : 'hidden'} />)}
+                {edit && (<TextField id='requirements' title='' value={requirements} className={tab == 'requirements' ? 'block' : 'hidden'} />)}
             </div>
         </div>
     )
