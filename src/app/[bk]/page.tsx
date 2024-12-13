@@ -79,7 +79,8 @@ export default async function DetailPosition({ params }: { params: Promise<{ bk:
                     </div>
                     <div className="flex sm:flex-col items-center sm:w-1/4">
                         <p className="text-base font-semibold w-1/2 sm:w-fit">Duration</p>
-                        <p className="text-base text-gray-400">unknown</p>
+                        {position?.duration && (<p className="text-base">{position.duration}</p>)}
+                        {!position?.duration && (<p className="text-base text-gray-400">unknown</p>)}
                     </div>
                     <div className="flex sm:flex-col items-center sm:w-1/4">
                         <p className="text-base font-semibold w-1/2 sm:w-fit">Salary</p>

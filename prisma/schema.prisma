@@ -17,8 +17,9 @@ model Position {
   notes        String?
   requirements String?
   description  String?
-  begin        String?
   degree       String?
+  begin        String?
+  duration     String?
   salary       Int?
   company      String
   status       String

@@ -38,6 +38,7 @@ export default async function EditPosition({ params }: { params: Promise<{ bk: s
                 company: formData.get('company') as string,
                 degree: formData.get('degree') as string,
                 begin: formData.get('begin') as string,
+                duration: formData.get('duration') as string,
                 salary: parseInt(formData.get('salary') as string),
                 status: "",
                 notes: formData.get('notes') as string,
@@ -96,7 +97,7 @@ export default async function EditPosition({ params }: { params: Promise<{ bk: s
                         <div className="flex items-center w-1/2">
                             <p className="text-base">Duration of Employment</p>
                         </div>
-                        <TextInput id="duration" title="" className="w-1/2" placeholder="unlimited"/>
+                        <TextInput id="duration" title="" value={position?.duration == null ? undefined : position.duration} className="w-1/2" placeholder="unlimited"/>
                     </div>
                     <div className="flex content-end py-1">
                         <div className="flex items-center w-1/2">
