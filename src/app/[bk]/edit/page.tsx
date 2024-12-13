@@ -36,6 +36,7 @@ export default async function EditPosition({ params }: { params: Promise<{ bk: s
                 bk: bk,
                 title: formData.get('title') as string,
                 company: formData.get('company') as string,
+                degree: formData.get('degree') as string,
                 salary: parseInt(formData.get('salary') as string),
                 status: "",
                 notes: formData.get('notes') as string,
@@ -82,7 +83,7 @@ export default async function EditPosition({ params }: { params: Promise<{ bk: s
                         <div className="flex items-center w-1/2">
                             <p className="text-base">Degree of Employment</p>
                         </div>
-                        <TextInput id="degree" title="" className="w-1/2" placeholder="80 - 100%"/>
+                        <TextInput id="degree" title="" value={position?.degree == null ? undefined : position.degree} className="w-1/2" placeholder="80 - 100%"/>
                     </div>
                     <div className="flex content-end py-1">
                         <div className="flex items-center w-1/2">
@@ -100,7 +101,7 @@ export default async function EditPosition({ params }: { params: Promise<{ bk: s
                         <div className="flex items-center w-1/2">
                             <p className="text-base">Salary per Year</p>
                         </div>
-                        <NumberInput id="salary" title="" value={position?.salary == null ? undefined : position?.salary} className="w-1/2" placeholder="100000" suffix="CHF" />
+                        <NumberInput id="salary" title="" value={position?.salary == null ? undefined : position.salary} className="w-1/2" placeholder="100000" suffix="CHF" />
                     </div>
                 </div>
                 <PositionTab

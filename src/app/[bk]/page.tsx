@@ -69,7 +69,8 @@ export default async function DetailPosition({ params }: { params: Promise<{ bk:
                 <div className="flex flex-col sm:flex-row divide-x-0 sm:divide-x divide-gray-300">
                     <div className="flex sm:flex-col items-center sm:w-1/4">
                         <p className="text-base font-semibold w-1/2 sm:w-fit">Degree</p>
-                        <p className="text-base text-gray-400">unknown</p>
+                        {position?.degree && (<p className="text-base">{position.degree}</p>)}
+                        {!position?.degree && (<p className="text-base text-gray-400">unknown</p>)}
                     </div>
                     <div className="flex sm:flex-col items-center sm:w-1/4">
                         <p className="text-base font-semibold w-1/2 sm:w-fit">Begin</p>
@@ -81,7 +82,7 @@ export default async function DetailPosition({ params }: { params: Promise<{ bk:
                     </div>
                     <div className="flex sm:flex-col items-center sm:w-1/4">
                         <p className="text-base font-semibold w-1/2 sm:w-fit">Salary</p>
-                        {position?.salary && (<p className="text-base">{position?.salary.toLocaleString('gsw')} CHF/year</p>)}
+                        {position?.salary && (<p className="text-base">{position.salary.toLocaleString('gsw')} CHF/year</p>)}
                         {!position?.salary && (<p className="text-base text-gray-400">unknown</p>)}
                     </div>
                 </div>
