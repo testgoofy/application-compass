@@ -55,7 +55,7 @@ export default async function Process({position} : {position: Position}) {
 
     const client = new PrismaClient();
 
-    let state = await client.processNode.findFirst({
+    const state = await client.processNode.findFirst({
         where: {
             id: position.stateId
         }
