@@ -1,0 +1,11 @@
+name: Continuous Deployment
+run-name: Deployment on ${{ github.ref_name }}
+on:
+  - push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: docker:27.4.0
+    steps:
+      - run: docker version
