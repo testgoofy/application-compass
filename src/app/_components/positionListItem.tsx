@@ -1,7 +1,16 @@
 import Image from "next/image"
 import Link from "next/link"
+import { PrismaClient } from "@prisma/client";
 
-export default function PositionListItem({ id, title, company, degree, salary }: { id: string, title: string, company: string, degree?: string, salary?: number }) {
+const client = new PrismaClient();
+
+export default async function PositionListItem({ id, title, company, salary, status }: { id: string, title: string, company: string, salary?: number, status?: number }) {
+
+    const state = await client.processNode.findFirst({
+        where: {
+            id: status
+        }
+    })
 
     return (
         <li className='p-3 hover:bg-gray-50' >
@@ -11,8 +20,7 @@ export default function PositionListItem({ id, title, company, degree, salary }:
                     <p className='text-xs text-gray-600'>at {company}</p>
                 </div>
                 <div className='grow hidden sm:block flex flex-col justify-start items-start'>
-                    {/* <p className='text-sm text-gray-600'>Progress: 1/3</p> */}
-                    {degree && (<p className='text-sm text-gray-600'>{degree}</p>)}
+                    {state?.name && <p className='text-sm text-gray-600'>Status: {state.name}</p>}
                     {salary && (<p className='text-sm text-gray-600'>{salary.toLocaleString('gsw')} CHF/year</p>)}
                 </div>
                 <div className='flex justify-center'>

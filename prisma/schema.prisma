@@ -10,9 +10,29 @@ generator client {
   provider = "prisma-client-js"
 }
 
+model ProcessEdge {
+  id     Int         @id @default(autoincrement())
+  fromId Int
+  from   ProcessNode @relation("outgoing", fields: [fromId], references: [id])
+  toId   Int
+  to     ProcessNode @relation("incoming", fields: [toId], references: [id])
+
+  @@map("process_edges")
+}
+
+model ProcessNode {
+  id            Int           @id @default(autoincrement())
+  name          String        @unique
+  outgoingEdges ProcessEdge[] @relation("outgoing")
+  incomingEdges ProcessEdge[] @relation("incoming")
+  positions     Position[]    @relation("current")
+
+  @@map("process_nodes")
+}
+
 model Position {
-  id           Int       @id @default(autoincrement())
-  bk           String    @default(uuid())
+  id           Int         @id @default(autoincrement())
+  bk           String      @default(uuid())
   title        String
   notes        String?
   requirements String?
@@ -22,8 +42,9 @@ model Position {
   duration     String?
   salary       Int?
   company      String
-  status       String
-  valid_from   DateTime  @default(now())
+  stateId      Int         @default(1)
+  state        ProcessNode @relation("current", fields: [stateId], references: [id])
+  valid_from   DateTime    @default(now())
   valid_to     DateTime?
   deleted_at   DateTime?
 

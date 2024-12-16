@@ -23,7 +23,6 @@ export default async function Home() {
       data: {
           title: "New Position",
           company: "",
-          status: "initial"
       }
     })
 

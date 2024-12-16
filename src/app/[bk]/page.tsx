@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import PositionTab from "../_components/positionTab";
 import { redirect } from "next/navigation";
+import Process from "../_components/process";
 
 const client = new PrismaClient();
 
@@ -36,6 +37,10 @@ export default async function DetailPosition({ params }: { params: Promise<{ bk:
     async function editHandler() {
         'use server'
         redirect('/' + position?.bk + '/edit')
+    }
+
+    if (!position) {
+        redirect('/')
     }
 
 
@@ -88,6 +93,12 @@ export default async function DetailPosition({ params }: { params: Promise<{ bk:
                         {!position?.salary && (<p className="text-base text-gray-400">unknown</p>)}
                     </div>
                 </div>
+            </div>
+
+            <div className="flex flex-col border border-gray-300 rounded-lg justify-center">
+                {/* Process */}
+                <p className="text-base font-semibold mt-2 ml-2">Process</p>
+                <Process position={position} />
             </div>
 
             <PositionTab

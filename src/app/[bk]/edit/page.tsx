@@ -19,6 +19,8 @@ export default async function EditPosition({ params }: { params: Promise<{ bk: s
         }
     })
 
+    const statuses = await client.processNode.findMany()
+
     async function handler(formData: FormData) {
         'use server'
         
@@ -40,7 +42,7 @@ export default async function EditPosition({ params }: { params: Promise<{ bk: s
                 begin: formData.get('begin') as string,
                 duration: formData.get('duration') as string,
                 salary: parseInt(formData.get('salary') as string),
-                status: "",
+                stateId: parseInt(formData.get('status') as string),
                 notes: formData.get('notes') as string,
                 description: formData.get('description') as string,
                 requirements: formData.get('requirements') as string,
@@ -106,6 +108,21 @@ export default async function EditPosition({ params }: { params: Promise<{ bk: s
                         <NumberInput id="salary" title="" value={position?.salary == null ? undefined : position.salary} className="w-1/2" placeholder="100000" suffix="CHF" />
                     </div>
                 </div>
+
+                <div className="flex flex-col border border-gray-300 rounded-lg px-2">
+                    {/* Process */}
+                    <div className="flex content-end py-1">
+                        <div className="flex items-center w-1/2">
+                            <p className="text-base">Process Status</p>
+                        </div>
+                        <select name="status" id="status" className="w-1/2 rounded border-1 bg-white">
+                            {statuses.map((state: any) => (
+                                <option key={state.id} value={state.id}>{state.name}</option>
+                            ))}
+                        </select>
+                    </div>
+                </div>
+
                 <PositionTab
                     edit
                     notes={position?.notes != null ? position.notes : undefined}
