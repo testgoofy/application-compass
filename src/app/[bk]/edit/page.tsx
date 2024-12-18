@@ -115,7 +115,7 @@ export default async function EditPosition({ params }: { params: Promise<{ bk: s
                         <div className="flex items-center w-1/2">
                             <p className="text-base">Process Status</p>
                         </div>
-                        <select name="status" id="status" className="w-1/2 rounded border-1 bg-white">
+                        <select name="status" id="status" defaultValue={position?.stateId} className="w-1/2 rounded border-1 bg-white">
                             {statuses.map((state: any) => (
                                 <option key={state.id} value={state.id}>{state.name}</option>
                             ))}
