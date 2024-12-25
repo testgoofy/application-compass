@@ -1,10 +1,10 @@
 name: Continuous Deployment
-run-name: Deployment on ${{ github.ref_name }}
+run-name: Continuous Deployment of ${{ github.sha }}
 on:
   - push
 
 jobs:
-  build:
+  Release:
     runs-on: ubuntu-latest
     permissions:
       packages: write
