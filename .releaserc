@@ -8,4 +8,4 @@ plugins:
       preset: conventionalcommits
   - '@semantic-release/github'
   - '@semantic-release/exec':
-      successCmd: echo ${nextRelease.version}
+      successCmd: echo ${nextRelease.version} > VERSION
