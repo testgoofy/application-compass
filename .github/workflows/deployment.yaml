@@ -24,4 +24,4 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           push: true
-          tags: testgoofy/application-compass:latest
+          tags: ghcr.io/testgoofy/application-compass:latest
