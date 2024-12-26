@@ -1,11 +1,19 @@
-branches:
-    - main
-    - name: develop
-      prerelease: true
-
-plugins:
-  - '@semantic-release/commit-analyzer':
-      preset: conventionalcommits
-  - '@semantic-release/github'
-  - '@semantic-release/exec':
-      successCmd: echo ${nextRelease.version} > ./VERSION
+{
+  "branches": [
+    "main",
+    {
+      "name": "develop",
+      "prerelease": true
+    }
+  ],
+  "plugins": [
+    "@semantic-release/commit-analyzer",
+    "@semantic-release/github",
+    [
+      "@semantic-release/exec",
+      {
+        "publishCmd": "echo \"${nextRelease.version}\""
+      }
+    ]
+  ]
+}
