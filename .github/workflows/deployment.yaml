@@ -26,7 +26,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npx semantic-release
       - name: Register Version
-        run: cat ./VERSION
+        run: cat ./version.json
   Release:
     runs-on: ubuntu-latest
     permissions:

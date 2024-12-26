@@ -12,7 +12,7 @@
     [
       "@semantic-release/exec",
       {
-        "publishCmd": "echo \"${nextRelease.version}\""
+        "prepareCmd": "./versioning.sh ${nextRelease.version}"
       }
     ]
   ]
