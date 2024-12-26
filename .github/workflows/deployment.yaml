@@ -37,9 +37,13 @@ jobs:
         run: |
           if [ -f version.json ]; then
             cat version.json
+            echo "version=$(jq -r .version version.json)"
             echo "version=$(jq -r .version version.json)" >> "$GITHUB_OUTPUT"
+            echo "version=$(jq -r .major version.json)"
             echo "major=$(jq -r .major version.json)" >> "$GITHUB_OUTPUT"
+            echo "version=$(jq -r .minor version.json)"
             echo "minor=$(jq -r .minor version.json)" >> "$GITHUB_OUTPUT"
+            echo "version=$(jq -r .patch version.json)"
             echo "patch=$(jq -r .patch version.json)" >> "$GITHUB_OUTPUT"
           fi
   Release:
@@ -58,6 +62,8 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
+      - name: Debug Version
+        run: echo "${{ needs.Versioning.outputs.version }}"
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
