@@ -10,6 +10,11 @@ jobs:
       contents: write
       issues: write
       pull-requests: write
+    outputs:
+      version: ${{ steps.register_version.outputs.version }}
+      major: ${{ steps.register_version.outputs.major }}
+      minor: ${{ steps.register_version.outputs.minor }}
+      patch: ${{ steps.register_version.outputs.patch }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -27,6 +32,15 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npx semantic-release
+      - name: Register version
+        id: register_version
+        run: |
+          if [ -f version.json ]; then
+            echo "version=$(jq -r .version version.json)" >> "$GITHUB_OUTPUT"
+            echo "major=$(jq -r .major version.json)" >> "$GITHUB_OUTPUT"
+            echo "minor=$(jq -r .minor version.json)" >> "$GITHUB_OUTPUT"
+            echo "patch=$(jq -r .patch version.json)" >> "$GITHUB_OUTPUT"
+          fi
   Release:
     runs-on: ubuntu-latest
     permissions:
@@ -47,4 +61,8 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           push: true
-          tags: ghcr.io/${{ github.repository }}:latest
+          tags: |
+            ghcr.io/${{ github.repository }}:latest
+            ghcr.io/${{ github.repository }}:v${{ needs.Versioning.outputs.major }}
+            ghcr.io/${{ github.repository }}:v${{ needs.Versioning.outputs.major }}.${{ needs.Versioning.outputs.minor }}
+            ghcr.io/${{ github.repository }}:v${{ needs.Versioning.outputs.major }}.${{ needs.Versioning.outputs.minor }}.${{ needs.Versioning.outputs.patch }}
