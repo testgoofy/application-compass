@@ -50,6 +50,13 @@ jobs:
             echo "major=$(jq -r .major version.json)" >> "$GITHUB_OUTPUT"
             echo "minor=$(jq -r .minor version.json)" >> "$GITHUB_OUTPUT"
             echo "patch=$(jq -r .patch version.json)" >> "$GITHUB_OUTPUT"
+          else
+            # If version.json doesn't exist, use the last version
+            LAST_VERSION=$(git describe --tags --abbrev=0 2>/dev/null || echo "0.0.0")
+            echo "version=$LAST_VERSION" >> "$GITHUB_OUTPUT"
+            echo "major=$(echo $LAST_VERSION | cut -d'.' -f1)" >> "$GITHUB_OUTPUT"
+            echo "minor=$(echo $LAST_VERSION | cut -d'.' -f2)" >> "$GITHUB_OUTPUT"
+            echo "patch=$(echo $LAST_VERSION | cut -d'.' -f3)" >> "$GITHUB_OUTPUT"
           fi
   Release:
     needs: Versioning
