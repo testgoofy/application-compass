@@ -59,12 +59,6 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
-      - name: Debug Version
-        run: |
-          echo "version: ${{ needs.Versioning.outputs.version }}"
-          echo "major: ${{ needs.Versioning.outputs.major }}"
-          echo "minor: ${{ needs.Versioning.outputs.minor }}"
-          echo "patch: ${{ needs.Versioning.outputs.patch }}"
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
