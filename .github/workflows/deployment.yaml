@@ -36,6 +36,7 @@ jobs:
         id: register_version
         run: |
           if [ -f version.json ]; then
+            cat version.json
             echo "version=$(jq -r .version version.json)" >> "$GITHUB_OUTPUT"
             echo "major=$(jq -r .major version.json)" >> "$GITHUB_OUTPUT"
             echo "minor=$(jq -r .minor version.json)" >> "$GITHUB_OUTPUT"
