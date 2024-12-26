@@ -53,6 +53,7 @@ jobs:
           else
             # If version.json doesn't exist, use the last version
             LAST_VERSION=$(git describe --tags --abbrev=0 2>/dev/null || echo "0.0.0")
+            LAST_VERSION=${LAST_VERSION#v}
             echo "version=$LAST_VERSION" >> "$GITHUB_OUTPUT"
             echo "major=$(echo $LAST_VERSION | cut -d'.' -f1)" >> "$GITHUB_OUTPUT"
             echo "minor=$(echo $LAST_VERSION | cut -d'.' -f2)" >> "$GITHUB_OUTPUT"
