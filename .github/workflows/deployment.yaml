@@ -19,14 +19,14 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 'lts/*'
-      - name: Install dependencies
+      - name: Install apt dependencies
+        run: sudo apt-get update && sudo apt-get install -y jq
+      - name: Install npm dependencies
         run: npm clean-install --force
       - name: Semantic Versioning
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npx semantic-release
-      - name: Register Version
-        run: cat ./version.json
   Release:
     runs-on: ubuntu-latest
     permissions:
