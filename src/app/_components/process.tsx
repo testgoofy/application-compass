@@ -1,57 +1,11 @@
 import type { Position } from '@prisma/client'
-import type { ProcessNode } from '@prisma/client'
-import type { ProcessEdge } from '@prisma/client'
 import { PrismaClient } from "@prisma/client";
 import Node from './node'
 import Edge from './edge'
+import { nextNode } from '@/app/_logic/processNode'
+import { previousNode } from '@/app/_logic/processNode'
 
 export default async function Process({position} : {position: Position}) {
-    
-    async function nextState(state: ProcessNode | null) : Promise<ProcessNode | null> {
-
-        if (state == null) {
-            return null
-        }
-
-        const edge = await client.processEdge.findFirst({
-            where: {
-                fromId: state.id,
-            }
-        })
-
-        if (edge == null) {
-            return null
-        }
-
-        return await client.processNode.findFirst({
-            where: {
-                id: edge?.toId
-            }
-        })
-    }
-
-    async function previousState(state: ProcessNode | null) : Promise<ProcessNode | null> {
-
-        if (state == null) {
-            return null
-        }
-
-        const edge = await client.processEdge.findFirst({
-            where: {
-                toId: state.id,
-            }
-        })
-
-        if (edge == null) {
-            return null
-        }
-
-        return await client.processNode.findFirst({
-            where: {
-                id: edge?.fromId
-            }
-        })
-    }
 
     const client = new PrismaClient();
 
@@ -61,13 +15,13 @@ export default async function Process({position} : {position: Position}) {
         }
     })
     
-    const next = await nextState(state)
-    const next2 = await nextState(next)
-    const next3 = await nextState(next2)
+    const next = await nextNode(state)
+    const next2 = await nextNode(next)
+    const next3 = await nextNode(next2)
 
-    const previous = await previousState(state)
-    const previous2 = await previousState(previous)
-    const previous3 = await previousState(previous2)
+    const previous = await previousNode(state)
+    const previous2 = await previousNode(previous)
+    const previous3 = await previousNode(previous2)
 
     if (!state) {
         throw new Error("Undefined state");
