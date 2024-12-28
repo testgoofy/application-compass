@@ -2,7 +2,7 @@ FROM node:23.3.0
 
 # Install dependencies
 COPY package.json package-lock.json* ./
-RUN npm ci --force
+RUN npm ci
 
 # Generate prisma client
 COPY prisma prisma
