@@ -16,8 +16,8 @@ export default function PositionList({ positions }: { positions: Position[] }) {
 
     return (
         <ul className="divide-y divide-gray-200 border border-gray-300 rounded-lg">
-            {positions.map((position: any) => (
-                <PositionListItem key={position.bk} id={position.bk} title={position.title} company={position.company} salary={position.salary} stateId={position.stateId} />
+            {positions.map((position: Position) => (
+                <PositionListItem key={position.bk} id={position.bk} title={position.title} company={position.company} salary={position.salary ?? undefined} stateId={position.stateId} />
             ))}
         </ul>
     )
