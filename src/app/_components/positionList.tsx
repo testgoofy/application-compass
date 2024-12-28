@@ -27,7 +27,7 @@ export default function PositionList({ positions }: { positions: Position[] }) {
                 <PositionListItem key={position.bk} id={position.bk} title={position.title} company={position.company} salary={position.salary ?? undefined} stateId={position.stateId} />
             ))}
             {rejected.map((position: Position) => (
-                <PositionListItem key={position.bk} id={position.bk} title={position.title} company={position.company} salary={position.salary ?? undefined} stateId={position.stateId} />
+                <PositionListItem key={position.bk} id={position.bk} title={position.title} company={position.company} salary={position.salary ?? undefined} stateId={position.stateId} passive />
             ))}
         </ul>
     )

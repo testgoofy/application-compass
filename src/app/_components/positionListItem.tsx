@@ -5,7 +5,7 @@ import Link from "next/link"
 import client from '@/app/_logic/database';
 import { nodeIndex } from "@/app/_logic/processNode";
 
-export default async function PositionListItem({ id, title, company, salary, stateId }: { id: string, title: string, company: string, salary?: number, stateId?: number}) {
+export default async function PositionListItem({ id, title, company, salary, stateId, passive }: { id: string, title: string, company: string, salary?: number, stateId?: number, passive?: boolean }) {
 
     let state
     if (stateId) {
@@ -49,7 +49,7 @@ export default async function PositionListItem({ id, title, company, salary, sta
     }
 
     return (
-        <li className='p-3 hover:bg-gray-50' >
+        <li className={`p-3 ` + (passive ? 'bg-gray-100 hover:bg-gray-200' : 'hover:bg-gray-100')} >
             <Link href={`/${id}`} className='flex justify-between items-stretch'>
                 <div className='flex flex-col items-start w-1/3 lg:w-1/4'>
                     <p className='text-base font-semibold max-w-full truncate'>{title}</p>
