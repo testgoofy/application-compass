@@ -131,6 +131,14 @@ async function seeding() {
             stateId: rejectedCompany.id,
         }
     })
+
+    await client.position.create({
+        data: {
+            title: 'Mushroom cultivator',
+            company: 'self-employed',
+            stateId: accepted.id
+        }
+    })
 }
 
 seeding()
