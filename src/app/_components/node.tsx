@@ -26,8 +26,8 @@ export default function Node ({name, state = 'inactive'}: {name: string, state?:
         <div className="flex flex-col items-center w-8 -mx-4">
             <div className="h-12"></div>
             <div className={`h-8 w-8 border-2 ${background} ${border} rounded-full flex justify-center items-center z-10`}></div>
-            <div className="flex h-12 justify-center items-center">
-                <p className='max-w-18'>{name}</p>
+            <div className="flex h-12 w-24 justify-center items-center">
+                <p className="text-center">{name}</p>
             </div>
         </div>
     )
