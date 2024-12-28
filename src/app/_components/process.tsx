@@ -1,13 +1,11 @@
 import type { Position } from '@prisma/client'
-import { PrismaClient } from "@prisma/client";
+import client from '@/app/_logic/database'
 import Node from './node'
 import Edge from './edge'
 import { nextNode } from '@/app/_logic/processNode'
 import { previousNode } from '@/app/_logic/processNode'
 
 export default async function Process({position} : {position: Position}) {
-
-    const client = new PrismaClient();
 
     const state = await client.processNode.findFirst({
         where: {

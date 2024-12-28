@@ -2,10 +2,8 @@ import { CircleCheck } from 'lucide-react';
 import { CircleX } from 'lucide-react';
 import Image from "next/image"
 import Link from "next/link"
-import { PrismaClient } from "@prisma/client";
+import client from '@/app/_logic/database';
 import { nodeIndex } from "@/app/_logic/processNode";
-
-const client = new PrismaClient();
 
 export default async function PositionListItem({ id, title, company, salary, stateId }: { id: string, title: string, company: string, salary?: number, stateId?: number}) {
 

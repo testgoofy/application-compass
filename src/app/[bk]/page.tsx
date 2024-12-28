@@ -1,11 +1,9 @@
-import { PrismaClient } from "@prisma/client";
+import client from "@/app/_logic/database";
 import Image from "next/image";
 import Link from "next/link";
 import PositionTab from "../_components/positionTab";
 import { redirect } from "next/navigation";
 import Process from "../_components/process";
-
-const client = new PrismaClient();
 
 export default async function DetailPosition({ params }: { params: Promise<{ bk: string }> }) {
     const { bk } = await params

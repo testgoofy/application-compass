@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import client from "@/app/_logic/database";
 import Image from "next/image";
 import Link from "next/link";
 import TextInput from "@/app/_components/textInput";
@@ -6,8 +6,6 @@ import NumberInput from "@/app/_components/numberInput";
 import Form from "next/form";
 import PositionTab from "@/app/_components/positionTab";
 import { redirect } from "next/navigation";
-
-const client = new PrismaClient();
 
 export default async function EditPosition({ params }: { params: Promise<{ bk: string }> }) {
     const { bk } = await params

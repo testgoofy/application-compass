@@ -1,7 +1,5 @@
 import type { ProcessNode } from '@prisma/client'
-import { PrismaClient } from "@prisma/client";
-
-const client = new PrismaClient();
+import client from '@/app/_logic/database';
 
 /**
  * Retrieves the next node in the process.

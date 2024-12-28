@@ -1,9 +1,7 @@
 import PositionList from "./_components/positionList";
-import { PrismaClient } from "@prisma/client";
+import client from "@/app/_logic/database";
 import Image from "next/image";
 import { redirect } from "next/navigation";
-
-const client = new PrismaClient();
 
 export const dynamic = 'force-dynamic'
 
