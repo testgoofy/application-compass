@@ -43,11 +43,4 @@ After such a change, the development server must be restarted.
 
 ## Deployment
 
-At the moment, the application has to be deployed manually.
-
-```bash
-docker build -t git.testgoofy.ch/lukas/application-compass:latest .
-docker push git.testgoofy.ch/lukas/application-compass:latest
-```
-
-Afterwards the container must be restarted.
+On pushing to Github, the OCI image is built automatically.
