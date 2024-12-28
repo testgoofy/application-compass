@@ -1,7 +1,9 @@
 name: Continuous Deployment
 run-name: Continuous Deployment
 on:
-  - push
+  push:
+    branches:
+      - main
 
 jobs:
   Versioning:
