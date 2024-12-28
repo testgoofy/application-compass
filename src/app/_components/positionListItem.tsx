@@ -1,7 +1,9 @@
+import { CircleCheck } from 'lucide-react';
+import { CircleX } from 'lucide-react';
 import Image from "next/image"
 import Link from "next/link"
 import { PrismaClient } from "@prisma/client";
-import { stat } from "fs";
+import { nodeIndex } from "@/app/_logic/processNode";
 
 const client = new PrismaClient();
 
@@ -16,6 +18,38 @@ export default async function PositionListItem({ id, title, company, salary, sta
             }) 
     }
 
+    let stateJSX: JSX.Element | null = null
+    if (state) {
+        let index = await nodeIndex(state)
+
+        if (state.group == 'Rejected') {
+            stateJSX = (
+                <div className="flex items-center gap-0.5">
+                    <p className='text-sm text-gray-600'>State: </p>
+                    <CircleX size={14} className='stroke-red-600' />
+                    <p className='text-sm text-red-600'>{state.name}</p>
+                </div>
+            )
+        }
+        else if (index.index +1 == index.total) {
+            stateJSX = (
+                <div className="flex items-center gap-0.5">
+                    <p className='text-sm text-gray-600'>State: </p>
+                    <CircleCheck size={14} className='stroke-green-600' />
+                    <p className='text-sm text-green-600'>{state.name}</p>
+                </div>
+            )
+        }
+        else {
+            stateJSX = (
+                <div className="flex items-center gap-0.5">
+                    <p className='text-sm text-gray-600'>State: </p>
+                    <p className='text-sm text-blue-700'>{index.index + 1}/{index.total} {state.name}</p>
+                </div>
+            )
+        }
+    }
+
     return (
         <li className='p-3 hover:bg-gray-50' >
             <Link href={`/${id}`} className='flex justify-between items-stretch'>
@@ -24,7 +58,7 @@ export default async function PositionListItem({ id, title, company, salary, sta
                     <p className='text-xs text-gray-600'>at {company}</p>
                 </div>
                 <div className='grow hidden sm:block flex flex-col justify-start items-start'>
-                    {state && <p className='text-sm text-gray-600'>Status: {state.name}</p>}
+                    {stateJSX}
                     {salary && (<p className='text-sm text-gray-600'>{salary.toLocaleString('gsw')} CHF/year</p>)}
                 </div>
                 <div className='flex justify-center'>

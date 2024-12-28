@@ -1,5 +1,4 @@
 import type { ProcessNode } from '@prisma/client'
-import type { ProcessEdge } from '@prisma/client'
 import { PrismaClient } from "@prisma/client";
 
 const client = new PrismaClient();
@@ -31,6 +30,38 @@ export async function nextNode(node: ProcessNode | null) : Promise<ProcessNode |
             id: edge.toId
         }
     })
+}
+
+/**
+ * Calculates the index and total number of nodes in the process.
+ *
+ * @param node - The current node for which the index and total are to be calculated.
+ * @returns A promise that resolves to an object containing the index of the current node
+ *          and the total number of nodes in the process.
+ */
+
+export async function nodeIndex(node: ProcessNode): Promise<{index: number, total: number}> {
+    let index = 0
+    let total = 1
+    
+    let current = node
+    let previous = await previousNode(current)
+    while (previous != null) {
+        index++
+        total++
+        current = previous
+        previous = await previousNode(current)
+    }
+
+    current = node
+    let next = await nextNode(current)
+    while (next != null) {
+        total++
+        current = next
+        next = await nextNode(current)
+    }
+
+    return {'index': index, 'total': total}
 }
 
 /**
