@@ -14,9 +14,9 @@ export default function PositionList({ positions }: { positions: Position[] }) {
         )
     }
 
-    const done = positions.filter((position: Position) => position.state.group == 'Done')
-    const progress = positions.filter((position: Position) => position.state.group == 'InProgress')
-    const rejected = positions.filter((position: Position) => position.state.group == 'Rejected')
+    const done = positions.filter((position: any) => position.state.group == 'Done')
+    const progress = positions.filter((position: any) => position.state.group == 'InProgress')
+    const rejected = positions.filter((position: any) => position.state.group == 'Rejected')
 
     return (
         <ul className="divide-y divide-gray-200 border border-gray-300 rounded-lg">
