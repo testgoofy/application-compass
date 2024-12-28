@@ -13,6 +13,9 @@ export default async function Home() {
     where: {
       valid_to: null,
       deleted_at: null
+    },
+    include: {
+      state: true
     }
   });
 

@@ -14,9 +14,19 @@ export default function PositionList({ positions }: { positions: Position[] }) {
         )
     }
 
+    let done = positions.filter((position: Position) => position.state.group == 'Done')
+    let progress = positions.filter((position: Position) => position.state.group == 'InProgress')
+    let rejected = positions.filter((position: Position) => position.state.group == 'Rejected')
+
     return (
         <ul className="divide-y divide-gray-200 border border-gray-300 rounded-lg">
-            {positions.map((position: Position) => (
+            {done.map((position: Position) => (
+                <PositionListItem key={position.bk} id={position.bk} title={position.title} company={position.company} salary={position.salary ?? undefined} stateId={position.stateId} />
+            ))}
+            {progress.map((position: Position) => (
+                <PositionListItem key={position.bk} id={position.bk} title={position.title} company={position.company} salary={position.salary ?? undefined} stateId={position.stateId} />
+            ))}
+            {rejected.map((position: Position) => (
                 <PositionListItem key={position.bk} id={position.bk} title={position.title} company={position.company} salary={position.salary ?? undefined} stateId={position.stateId} />
             ))}
         </ul>
