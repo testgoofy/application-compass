@@ -71,8 +71,16 @@ export default async function Process({position} : {position: Position}) {
 
     if (!state) {
         throw new Error("Undefined state");
-        
     }
+
+    let stateAppearance: 'active' | 'inactive' | 'passed' | 'failed' = 'active'
+    if (state.group == 'Done') {
+        stateAppearance = 'passed'
+    }
+    else if (state.group == 'Rejected') {
+        stateAppearance = 'failed'
+    }
+        
 
     return (
         <div className='flex justify-center'>
@@ -82,7 +90,7 @@ export default async function Process({position} : {position: Position}) {
                 { previous2 && <Edge state='passed'/> }
                 { previous && <Node name={previous.name} state='passed' /> }
                 { previous && <Edge state='passed'/> }
-                <Node name={state.name} state='active'/>
+                <Node name={state.name} state={stateAppearance}/>
                 { next && <Edge /> }
                 { next && <Node name={next.name} /> }
                 { next2 && <Edge /> }
