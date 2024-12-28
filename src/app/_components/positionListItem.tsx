@@ -20,7 +20,7 @@ export default async function PositionListItem({ id, title, company, salary, sta
 
     let stateJSX: JSX.Element | null = null
     if (state) {
-        let index = await nodeIndex(state)
+        const index = await nodeIndex(state)
 
         if (state.group == 'Rejected') {
             stateJSX = (
