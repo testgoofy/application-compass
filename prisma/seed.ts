@@ -10,49 +10,57 @@ async function seeding() {
     // Create Process Nodes
     const init = await client.processNode.create({
         data: {
-            name: 'Initial'
+            name: 'Initial',
+            group: 'InProgress'
         }
     })
 
     const applied = await client.processNode.create({
         data: {
-            name: 'Applied'
+            name: 'Applied',
+            group: 'InProgress'
         }
     })
 
     const interview1 = await client.processNode.create({
         data: {
-            name: 'Interview Round 1'
+            name: 'Interview Round 1',
+            group: 'InProgress'
         }
     })
 
     const interview2 = await client.processNode.create({
         data: {
-            name: 'Interview Round 2'
+            name: 'Interview Round 2',
+            group: 'InProgress'
         }
     })
 
     const offering =  await client.processNode.create({
         data: {
-            name: 'Contract Offering'
+            name: 'Contract Offering',
+            group: 'InProgress'
         }
     })
 
     const accepted = await client.processNode.create({
         data: {
-            name: 'Accepted'
+            name: 'Accepted',
+            group: 'Done'
         }
     })
 
     const rejectedCompany = await client.processNode.create({
         data: {
-            name: 'Rejected by Company'
+            name: 'Rejected by Company',
+            group: 'Rejected'
         }
     })
 
     const rejectedApplicant = await client.processNode.create({
         data: {
-            name: 'Rejected by Applicant'
+            name: 'Rejected by Applicant',
+            group: 'Rejected'
         }
     })
 

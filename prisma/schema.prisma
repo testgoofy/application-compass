@@ -10,6 +10,12 @@ generator client {
   provider = "prisma-client-js"
 }
 
+enum NodeGroup {
+  InProgress
+  Done
+  Rejected
+}
+
 model ProcessEdge {
   id     Int         @id @default(autoincrement())
   fromId Int
@@ -23,6 +29,7 @@ model ProcessEdge {
 model ProcessNode {
   id            Int           @id @default(autoincrement())
   name          String        @unique
+  group         NodeGroup     @default(InProgress)
   outgoingEdges ProcessEdge[] @relation("outgoing")
   incomingEdges ProcessEdge[] @relation("incoming")
   positions     Position[]    @relation("current")
