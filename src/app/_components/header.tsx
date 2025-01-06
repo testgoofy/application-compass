@@ -4,7 +4,6 @@ import Link from "next/link";
 import { usePathname } from 'next/navigation'
 
 function LinkButton({endpoint, name}: {endpoint: string, name: string}) {
-    console.log(`usePathname: ${usePathname()}, endpoint: ${endpoint}, match: ${usePathname() === endpoint}`)
     return (
         <Link href={endpoint} className={"text-base text-white py-1 px-2 rounded-md hover:bg-blue-700 hover:underline" + (usePathname() === endpoint ? " bg-blue-600" : "")}>
             {name}
