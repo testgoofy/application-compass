@@ -7,6 +7,13 @@ async function seeding() {
     await client.processEdge.deleteMany()
     await client.processNode.deleteMany()
 
+    // Create Process
+    const process = await client.process.create({
+        data: {
+            name: "Default Process",
+        }
+    })
+
     // Create Process Nodes
     const init = await client.processNode.create({
         data: {
@@ -68,35 +75,40 @@ async function seeding() {
     await client.processEdge.create({
         data: {
             fromId: init.id,
-            toId: applied.id
+            toId: applied.id,
+            process_id: process.id
         }
     })
 
     await client.processEdge.create({
         data: {
             fromId: applied.id,
-            toId: interview1.id
+            toId: interview1.id,
+            process_id: process.id
         }
     })
 
     await client.processEdge.create({
         data: {
             fromId: interview1.id,
-            toId: interview2.id
+            toId: interview2.id,
+            process_id: process.id
         }
     })
 
     await client.processEdge.create({
         data: {
             fromId: interview2.id,
-            toId: offering.id
+            toId: offering.id,
+            process_id: process.id
         }
     })
 
     await client.processEdge.create({
         data: {
             fromId: offering.id,
-            toId: accepted.id
+            toId: accepted.id,
+            process_id: process.id
         }
     })
 
