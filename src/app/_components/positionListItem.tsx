@@ -2,18 +2,18 @@ import { CircleCheck } from 'lucide-react';
 import { CircleX } from 'lucide-react';
 import Image from "next/image"
 import Link from "next/link"
-import client from '@/app/_logic/database';
+import Database from '@/app/_logic/database';
 import { nodeIndex } from "@/app/_logic/processNode";
 
 export default async function PositionListItem({ id, title, company, salary, stateId, passive }: { id: string, title: string, company: string, salary?: number, stateId?: number, passive?: boolean }) {
 
     let state
     if (stateId) {
-            state = await client.processNode.findFirst({
-                where: {
-                    id: stateId
-                }
-            }) 
+            state = await Database.getInstance().processNode.findFirst({
+              where: {
+                id: stateId,
+              },
+            }); 
     }
 
     let stateJSX: JSX.Element | null = null

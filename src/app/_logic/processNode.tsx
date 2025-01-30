@@ -1,5 +1,5 @@
-import type { ProcessNode } from '@prisma/client'
-import client from '@/app/_logic/database';
+import type { ProcessNode } from '@prisma/client';
+import Database from '@/app/_logic/database';
 
 /**
  * Retrieves the next node in the process.
@@ -8,26 +8,28 @@ import client from '@/app/_logic/database';
  * @returns A promise that resolves to the next node, or null if there is no next node.
  */
 
-export async function nextNode(node: ProcessNode | null) : Promise<ProcessNode | null> {
-    if (node == null) {
-        return null
-    }
+export async function nextNode(
+  node: ProcessNode | null
+): Promise<ProcessNode | null> {
+  if (node == null) {
+    return null;
+  }
 
-    const edge = await client.processEdge.findFirst({
-        where: {
-            fromId: node.id,
-        }
-    })
+  const edge = await Database.getInstance().processEdge.findFirst({
+    where: {
+      fromId: node.id,
+    },
+  });
 
-    if (edge == null) {
-        return null
-    }
+  if (edge == null) {
+    return null;
+  }
 
-    return await client.processNode.findFirst({
-        where: {
-            id: edge.toId
-        }
-    })
+  return await Database.getInstance().processNode.findFirst({
+    where: {
+      id: edge.toId,
+    },
+  });
 }
 
 /**
@@ -38,28 +40,30 @@ export async function nextNode(node: ProcessNode | null) : Promise<ProcessNode |
  *          and the total number of nodes in the process.
  */
 
-export async function nodeIndex(node: ProcessNode): Promise<{index: number, total: number}> {
-    let index = 0
-    let total = 1
-    
-    let current = node
-    let previous = await previousNode(current)
-    while (previous != null) {
-        index++
-        total++
-        current = previous
-        previous = await previousNode(current)
-    }
+export async function nodeIndex(
+  node: ProcessNode
+): Promise<{ index: number; total: number }> {
+  let index = 0;
+  let total = 1;
 
-    current = node
-    let next = await nextNode(current)
-    while (next != null) {
-        total++
-        current = next
-        next = await nextNode(current)
-    }
+  let current = node;
+  let previous = await previousNode(current);
+  while (previous != null) {
+    index++;
+    total++;
+    current = previous;
+    previous = await previousNode(current);
+  }
 
-    return {'index': index, 'total': total}
+  current = node;
+  let next = await nextNode(current);
+  while (next != null) {
+    total++;
+    current = next;
+    next = await nextNode(current);
+  }
+
+  return { index: index, total: total };
 }
 
 /**
@@ -68,24 +72,26 @@ export async function nodeIndex(node: ProcessNode): Promise<{index: number, tota
  * @param node - The current node, or null if there is no current node.
  * @returns A promise that resolves to the previous node, or null if there is no previous node.
  */
-export async function previousNode(state: ProcessNode | null) : Promise<ProcessNode | null> {
-    if (state == null) {
-        return null
-    }
+export async function previousNode(
+  state: ProcessNode | null
+): Promise<ProcessNode | null> {
+  if (state == null) {
+    return null;
+  }
 
-    const edge = await client.processEdge.findFirst({
-        where: {
-            toId: state.id,
-        }
-    })
+  const edge = await Database.getInstance().processEdge.findFirst({
+    where: {
+      toId: state.id,
+    },
+  });
 
-    if (edge == null) {
-        return null
-    }
+  if (edge == null) {
+    return null;
+  }
 
-    return await client.processNode.findFirst({
-        where: {
-            id: edge.fromId
-        }
-    })
+  return await Database.getInstance().processNode.findFirst({
+    where: {
+      id: edge.fromId,
+    },
+  });
 }
