@@ -1,14 +1,6 @@
 {
-    "sqltools.connections": [
-        {
-            "previewLimit": 50,
-            "server": "localhost",
-            "port": 5432,
-            "driver": "PostgreSQL",
-            "name": "Dev Database",
-            "database": "application-compass",
-            "username": "postgres",
-            "password": "password"
-        }
-    ]
+  "editor.formatOnSave": true,
+  "editor.formatOnType": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.tabSize": 2
 }
