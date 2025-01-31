@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client';
+import {PrismaClient} from '@prisma/client';
 
 export default class Database extends PrismaClient {
   private static instance: Database | undefined = undefined;
@@ -17,7 +17,7 @@ export default class Database extends PrismaClient {
     this.initialize();
   }
 
-  private async initialize() {
+  public async initialize() {
     if (
       (await this.processEdge.count()) <= 0 &&
       (await this.processNode.count()) <= 0

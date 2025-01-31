@@ -1,0 +1,41 @@
+{
+  "companies": [
+    "Big Company",
+    "Company Inc.",
+    "E.Xample and Brothers",
+    "Mega Company",
+    "Micro Company",
+    "Self-Employed",
+    "Small Company",
+    "Some Random Company",
+    "Sub Company",
+    "Super Company",
+    "Super Sub Company",
+    "Troll Company"
+  ],
+  "titles": [
+    "Algorithm Enthusiast",
+    "API Alchemist",
+    "Backend Engineer",
+    "Chief Bug Creator",
+    "Chief Debugging Officer",
+    "Cloud Architect",
+    "Code Wizard",
+    "Data Scientist",
+    "DevOps Engineer",
+    "DevOps Guru",
+    "Digital Overlord",
+    "Frontend Developer",
+    "Full-Stack Developer",
+    "Machine Learning Engineer",
+    "Master of Copy-Paste Engineering",
+    "Mushroom cultivator",
+    "Professional Computer Specialist",
+    "QA Engineer",
+    "Scrum Master",
+    "Scrum Survivor",
+    "Senior StackOverflow Consultant",
+    "Software Engineer",
+    "Specialist for Specific Questions about Computers"
+  ]
+}
