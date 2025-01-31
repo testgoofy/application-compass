@@ -21,6 +21,8 @@ model Process {
   bk           String        @default(uuid())
   name         String
   processNodes ProcessEdge[] @relation("process")
+
+  @@map("processes")
 }
 
 model ProcessEdge {
