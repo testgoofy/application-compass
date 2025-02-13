@@ -1,7 +1,5 @@
+import { companies, titles } from './test-data.json';
 import Database from '../src/app/_logic/database';
-
-const companies = require('./test-data.json')['companies'];
-const titles = require('./test-data.json')['titles'];
 
 const N_EXAMPLES = 20;
 
