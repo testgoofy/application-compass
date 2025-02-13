@@ -2,7 +2,7 @@ FROM node:23.3.0
 
 # Install dependencies
 COPY package.json package-lock.json* ./
-RUN npm ci
+RUN npm clean-install
 
 # Generate prisma client
 COPY prisma prisma
@@ -29,4 +29,4 @@ USER nextjs
 EXPOSE 3000
 ENV PORT=3000
 
-CMD ["npx", "prisma", "migrate", "deploy", "&&", "npm", "run", "start"]
+CMD ["sh", "-c", "npx prisma migrate deploy && npm run start"]
