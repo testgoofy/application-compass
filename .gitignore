@@ -42,9 +42,6 @@ next-env.d.ts
 # VSCode Devcontainer
 .devcontainer
 
-# Storybook
-*storybook.log
-
 # Database
 application-compass.db
 application-compass.db-journal 
